@@ -58,8 +58,8 @@ public class AndroidEmulatorContext {
         // ADB servers will race to register with each emulator, meaning that each build will most
         // likely end up with an emulator that always ends up appearing to be "offline".
         // See http://b.android.com/205197
-        final int PORT_RANGE_START = 5554 + (2 * 64);
-        final int PORT_RANGE_END = PORT_RANGE_START + (2 * 64);
+        final int PORT_RANGE_START = 5554;
+        final int PORT_RANGE_END = PORT_RANGE_START + 30;
 
         // When using the emulator `-port` option, the first port must be even, so here we reserve
         // three consecutive ports, ensuring that we will get an even port followed by an odd
@@ -70,8 +70,8 @@ public class AndroidEmulatorContext {
         if (ports[i] % 2 != 0) {
             i++;
         }
-        userPort = ports[i++];
-        adbPort = ports[i++];
+        userPort = 5554;
+        adbPort = 5555;
 
         // Release the port that was reserved but not used
         portAllocator.free(i == 2 ? ports[2] : ports[0]);
